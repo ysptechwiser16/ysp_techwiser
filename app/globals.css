@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #050816;
+  color: #ffffff;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(0, 229, 255, 0.28);
+  color: #ffffff;
+}
+
+.premium-kicker {
+  @apply text-xs uppercase tracking-[0.32em] text-cyan-200/75;
+}
+
+.premium-button {
+  @apply inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-cyan-400/15 hover:border-cyan-300/40;
+}
+
+.premium-button-ghost {
+  @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-white/10;
+}
+
+.glass-panel {
+  @apply rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_20px_80px_rgba(0,0,0,0.45)];
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.75s ease-out both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

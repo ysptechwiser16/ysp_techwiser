@@ -1,0 +1,95 @@
+# YSP Techwiser — Roadmap
+
+## Project Summary
+YSP Techwiser is a premium tech media website focused on smartphones, laptops, accessories, AI, reviews, guides, news, comparisons, videos, and creator collaborations. The site is built with Next.js, TypeScript, MongoDB Atlas, Mongoose, and a custom admin/CMS layer.
+
+## Current State
+- Core frontend pages are built
+- Admin/auth foundation is in place
+- MongoDB Atlas is connected
+- Main route protection is working
+- Comments API issue has been fixed
+- The project is now in the refinement and launch-prep stage
+
+## Phase 1 — Infrastructure & Stability
+Status: Complete
+
+Completed:
+- Next.js app setup
+- TypeScript setup
+- MongoDB Atlas integration
+- Mongoose models
+- Environment variable setup
+- Admin auth scaffold
+- Route protection
+- API stability fixes
+- Comments API fix
+- Build and TypeScript stability
+
+## Phase 2 — Admin CMS Refinement
+Status: In progress
+
+Goals:
+- Improve admin content workflows
+- Refine editor experience
+- Polish media management
+- Tighten moderation tools
+- Make admin pages production-grade
+- Clean up unused files and backup artifacts
+
+## Phase 3 — Frontend Refinement
+Status: In progress
+
+Goals:
+- Final homepage polish
+- Improve page consistency
+- Refine search, compare, blog, reviews, guides, news, videos
+- Improve responsiveness
+- Add loading, empty, and error states
+- Finish SEO metadata across pages
+
+## Phase 4 — Production Features
+Status: Planned
+
+Goals:
+- Related content
+- Trending section
+- Better bookmarks behavior
+- Improved analytics
+- Media upload pipeline
+- Better content discovery
+
+## Phase 5 — Deployment & Launch
+Status: Planned
+
+Goals:
+- Production-ready MongoDB setup
+- Final security pass
+- Vercel deployment
+- Custom domain
+- SSL
+- Search Console
+- Analytics
+- Final QA
+- Public launch
+
+## Working Rules
+- Change one small area at a time
+- Verify after every change
+- Keep route protection strict
+- Keep the repo clean
+- Do not remove files before auditing them
+- Keep dev and production configs separate
+
+## Main Areas in Repo
+- `app/`
+- `components/`
+- `lib/`
+- `models/`
+- `middleware.ts`
+- `public/`
+- `docs/`
+- `scripts/`
+
+## Launch Goal
+Build a premium, secure, fast, and scalable tech media platform that is ready for global deployment.
