@@ -1,7 +1,6 @@
 import crypto from 'crypto'
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import { getIsAdminSession } from '@/lib/adminAuth'
 
 function createCloudinarySignature(params: Record<string, string>, apiSecret: string) {
   const sortedKeys = Object.keys(params).sort()
@@ -10,8 +9,8 @@ function createCloudinarySignature(params: Record<string, string>, apiSecret: st
 }
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions)
-  if (!session || (session.user as any)?.role !== 'admin') {
+  const isAdmin = await getIsAdminSession()
+  if (!isAdmin) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME

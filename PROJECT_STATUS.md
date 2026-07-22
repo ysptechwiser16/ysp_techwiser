@@ -13,6 +13,9 @@ Phase 2 — Admin CMS refinement
 - Logout system exists
 - Admin route protection is working
 - Comments API issue is fixed
+- Bookmark API invalid `articleId` handling is hardened
+- Admin-only submissions listing is protected
+- Search API regex input is escaped and length-limited
 - Core route/API structure is present
 
 ## What Is Healthy
@@ -22,6 +25,7 @@ Phase 2 — Admin CMS refinement
 - Protected routes redirect correctly
 - API routes return valid responses
 - Auth flow is stable
+- Invalid ObjectId inputs are safely rejected before MongoDB casts
 - Build and TypeScript were passing in the last stable state
 
 ## What Still Needs Work
@@ -35,8 +39,8 @@ Phase 2 — Admin CMS refinement
 - Deployment prep
 
 ## Next Tasks
-1. Audit admin pages one by one
-2. Audit admin API routes one by one
+1. Continue auditing admin pages one by one
+2. Continue auditing admin API routes one by one
 3. Refine editor/content/media flow
 4. Clean unnecessary temp files and backups
 5. Prepare for production deployment

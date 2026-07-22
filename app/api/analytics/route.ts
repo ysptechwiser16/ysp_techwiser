@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
+import { getIsAdminSession } from '@/lib/adminAuth'
 import { connectDB } from '@/lib/mongodb'
 import { Article } from '@/models/Article'
 import { Video } from '@/models/Video'
@@ -9,8 +8,8 @@ import { Submission } from '@/models/Submission'
 import { Bookmark } from '@/models/Bookmark'
 
 export async function GET() {
-  const session = await getServerSession(authOptions)
-  if (!session || (session.user as any)?.role !== 'admin') {
+  const isAdmin = await getIsAdminSession()
+  if (!isAdmin) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
   await connectDB()
