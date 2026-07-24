@@ -1,8 +1,14 @@
 import { NextResponse } from 'next/server'
+import { getIsAdminSession } from '@/lib/adminAuth'
 import { connectDB } from '@/lib/mongodb'
 import { Submission } from '@/models/Submission'
 
 export async function GET() {
+  const isAdmin = await getIsAdminSession()
+  if (!isAdmin) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   await connectDB()
 
   const results = await Submission.find().sort({ createdAt: -1 }).limit(50).lean()

@@ -4,14 +4,14 @@ import { connectDB } from '@/lib/mongodb'
 import { Comment } from '@/models/Comment'
 
 export async function GET(request: Request) {
-  await connectDB()
-
   const { searchParams } = new URL(request.url)
   const articleId = (searchParams.get('articleId') ?? '').trim()
 
   if (!articleId || !mongoose.Types.ObjectId.isValid(articleId)) {
     return NextResponse.json({ results: [] })
   }
+
+  await connectDB()
 
   const results = await Comment.find({
     articleId,
@@ -24,8 +24,6 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  await connectDB()
-
   const body = await request.json().catch(() => null)
 
   const articleId = String(body?.articleId ?? '').trim()
@@ -43,6 +41,8 @@ export async function POST(request: Request) {
   if (!articleId || !userName || !userEmail || !message) {
     return NextResponse.json({ error: 'Missing comment fields' }, { status: 400 })
   }
+
+  await connectDB()
 
   const created = await Comment.create({
     articleId,

@@ -7,13 +7,16 @@
 - MongoDB connection failures
 - Atlas URI formatting issues
 - Comment API CastError from invalid `articleId`
+- Bookmark API CastError risk from invalid `articleId`
+- Public read access to submissions listing
+- Search API accepted raw regex input
 - Admin route protection issues
 - Sign-in redirect loop issues
 - Missing logout button rendering
 
 ## Remaining Cleanup
-- Remove leftover backup files (`*.bak`, `*.phase2.bak`)
-- Remove temporary audit files if they are no longer needed
+- No leftover backup files (`*.bak`, `*.phase2.bak`) were found in the audited tree
+- Remove temporary audit files if they are created later and no longer needed
 - Clean `.next` cache when necessary
 - Keep repo root tidy before final deployment
 

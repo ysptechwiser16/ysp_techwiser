@@ -5,6 +5,10 @@ import { Video } from '@/models/Video'
 import { resolveContentType } from '@/lib/content/resolveContentType'
 import { getRouteForContentType } from '@/lib/content/routeMap'
 
+function escapeRegex(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
 export async function GET(request: Request) {
   await connectDB()
 
@@ -12,14 +16,16 @@ export async function GET(request: Request) {
   const q = (searchParams.get('q') ?? '').trim()
   if (!q) return NextResponse.json({ results: [] })
 
+  const safeQuery = escapeRegex(q).slice(0, 120)
+
   const [articles, videos] = await Promise.all([
     Article.find({
       status: 'published',
       $or: [
-        { title: { $regex: q, $options: 'i' } },
-        { excerpt: { $regex: q, $options: 'i' } },
-        { category: { $regex: q, $options: 'i' } },
-        { tags: { $regex: q, $options: 'i' } },
+        { title: { $regex: safeQuery, $options: 'i' } },
+        { excerpt: { $regex: safeQuery, $options: 'i' } },
+        { category: { $regex: safeQuery, $options: 'i' } },
+        { tags: { $regex: safeQuery, $options: 'i' } },
       ],
     })
       .sort({ featured: -1, views: -1, createdAt: -1 })
@@ -28,10 +34,10 @@ export async function GET(request: Request) {
     Video.find({
       status: 'published',
       $or: [
-        { title: { $regex: q, $options: 'i' } },
-        { excerpt: { $regex: q, $options: 'i' } },
-        { category: { $regex: q, $options: 'i' } },
-        { tags: { $regex: q, $options: 'i' } },
+        { title: { $regex: safeQuery, $options: 'i' } },
+        { excerpt: { $regex: safeQuery, $options: 'i' } },
+        { category: { $regex: safeQuery, $options: 'i' } },
+        { tags: { $regex: safeQuery, $options: 'i' } },
       ],
     })
       .sort({ featured: -1, views: -1, publishedAt: -1, createdAt: -1 })
